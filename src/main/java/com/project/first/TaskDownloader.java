@@ -4,7 +4,15 @@ import java.util.ArrayList;
 
 import org.springframework.http.ResponseEntity;
 
-public interface Downloading {
-
+/**
+ * Downloads all existing tasks.
+ *
+ */
+public interface TaskDownloader {
+	/**
+	 * Downloads all existing tasks.
+	 * 
+	 * @return list of all existing tasks
+	 */
 	public ResponseEntity<ArrayList<Task>> downloadExistingTasks();
 }

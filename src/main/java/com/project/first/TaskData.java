@@ -1,17 +1,18 @@
 package com.project.first;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class RequestWrapper {
+public class TaskData {
 
-	private ArrayList<Integer> numbers;
+	private List<Integer> numbers;
 	private Operation operation;
 
-	public ArrayList<Integer> getNumbers() {
+	public List<Integer> getNumbers() {
 		return numbers;
 	}
 
-	public void setNumbers(ArrayList<Integer> numbers) {
+	public void setNumbers(List<Integer> numbers) {
 		this.numbers = numbers;
 	}
 
