@@ -1,7 +1,5 @@
 package com.project.first;
 
-import org.springframework.http.ResponseEntity;
-
 /**
  * Checks if the result of the task which id is given is ready.
  *

@@ -1,17 +1,21 @@
 package com.project.first;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.HashSet;
+import java.util.Set;
 
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class TaskServiceTest {
 
+	@Autowired
 	private TaskService taskService;
-
-	@Before
-	public void setup() {
-		taskService = null;
-	}
 
 	@Test
 	public void produceTask_withDesciption() {
@@ -29,5 +33,34 @@ public class TaskServiceTest {
 	public void produceTask_withNullDesciption() {
 		long id = taskService.produceTask(null);
 		Assert.assertTrue(id > 0);
+	}
+
+	@Test
+	public void produceTask_isIdUnique() {
+		Set<Long> ids = new HashSet<>();
+		for (int i = 0; i < 10; i++) {
+			ids.add(taskService.produceTask(""));
+		}
+		if (ids.size() != 10) {
+			Assert.fail("Id isn't unique");
+		}
+
+	}
+
+	@Test
+	public void findTaskById_checkDescription() {
+		String description = "des";
+		long id = taskService.produceTask(description);
+		Assert.assertEquals(taskService.findTaskById(id).getDescription(), description);
+	}
+
+	@Test
+	public void findTaskById_withZeroId() {
+		Assert.assertNull(taskService.findTaskById(0));
+	}
+
+	@Test
+	public void findTaskById_withNegativeId() {
+		Assert.assertNull(taskService.findTaskById(-3));
 	}
 }

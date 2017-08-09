@@ -1,17 +1,26 @@
 package com.project.first;
 
-public class Task {
-	private final long id;
-	private final String description;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-	public Task(long id, String description) {
-		super();
-		this.id = id;
-		this.description = description;
+@Entity
+public class Task {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	private String description;
+
+	public Task() {
 	}
 
 	public long getId() {
 		return id;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getDescription() {

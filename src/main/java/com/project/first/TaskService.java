@@ -6,7 +6,6 @@ package com.project.first;
 // TODO: do not use ing in names
 public interface TaskService {
 
-	// TODO: add javadoc
 	/**
 	 * Creates a new task and finds task by given ID.
 	 * 
@@ -19,7 +18,7 @@ public interface TaskService {
 	/**
 	 * 
 	 * @param id
-	 * 			a unique ID of task
+	 *            a unique ID of task, positive
 	 * @return task for given ID
 	 */
 	Task findTaskById(long id);

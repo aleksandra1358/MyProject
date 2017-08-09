@@ -1,7 +1,5 @@
 package com.project.first;
 
-import java.util.ArrayList;
-
 /**
  * Loads task data.
  *

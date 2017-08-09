@@ -1,7 +1,5 @@
 package com.project.first;
 
-import org.springframework.http.ResponseEntity;
-
 /**
  * Executes a task by given id.
  *
