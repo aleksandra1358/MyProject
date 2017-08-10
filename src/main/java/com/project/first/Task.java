@@ -15,7 +15,7 @@ public class Task {
 	public Task() {
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -25,6 +25,12 @@ public class Task {
 
 	public String getDescription() {
 		return description;
+	}
+
+	public void setId(Long id) {
+		if (this.id==null){
+			this.id = id;
+		}
 	}
 
 }

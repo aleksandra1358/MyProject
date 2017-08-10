@@ -12,7 +12,8 @@ public class Config {
 
 	@Bean
 	public TaskService taskService() {
-		return new SimpleTaskService();
+		//return new SimpleTaskService();
+		return new DatabaseTaskService();
 	}
 
 	@Bean
