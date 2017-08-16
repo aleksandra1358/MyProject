@@ -7,7 +7,7 @@ public class SimpleTaskDataLoader implements TaskDataLoader {
 	private final ArrayList<TaskData> taskDataList = new ArrayList<>();
 
 	@Override
-	public void loadData(TaskData taskData) {
+	public void loadData(long id, TaskData taskData) {
 		taskDataList.add(taskData);
 
 	}

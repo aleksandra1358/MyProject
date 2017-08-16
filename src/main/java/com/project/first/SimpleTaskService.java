@@ -8,6 +8,15 @@ public class SimpleTaskService implements TaskService {
 
 	private final List<Task> tasks = new ArrayList<>();
 	private final AtomicLong counter = new AtomicLong();
+	private TaskData taskData = new TaskData();
+
+	public TaskData getTaskData() {
+		return taskData;
+	}
+
+	public void setTaskData(TaskData taskData) {
+		this.taskData = taskData;
+	}
 
 	@Override
 	public long produceTask(String description) {
