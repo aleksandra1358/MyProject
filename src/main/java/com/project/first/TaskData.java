@@ -1,12 +1,19 @@
 package com.project.first;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -15,18 +22,39 @@ import javax.persistence.Table;
 public class TaskData {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "TASK_DATA_ID")
 	private Long id;
 
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "NUMBERS")
-	private List<Integer> numbers;
+	private List<Integer> numbers = new ArrayList<>();
 
 	@Column(name = "OPERATION")
+	@Enumerated(EnumType.STRING)
 	private Operation operation;
-
-	@OneToOne(mappedBy = "taskData")
+	
+	@OneToOne
+	@JoinColumn(name="TASK_ID")
 	private Task task;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Task getTask() {
+		return task;
+	}
+
+	public void setTask(Task task) {
+		this.task = task;
+	}
+
+	
 
 	public List<Integer> getNumbers() {
 		return numbers;

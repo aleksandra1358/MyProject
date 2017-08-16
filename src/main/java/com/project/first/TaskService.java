@@ -11,7 +11,7 @@ public interface TaskService {
 	 * 
 	 * @param description
 	 *            a description, can be null or empty.
-	 * @return a unique ID of newly created task, greater than zero,
+	 * @return a unique ID of newly created task, greater than zero
 	 */
 	long produceTask(String description);
 

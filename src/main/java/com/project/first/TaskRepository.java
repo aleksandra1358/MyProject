@@ -6,4 +6,5 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 	Task findById(Long id);
 
 	Task save(Task task);
+	
 }

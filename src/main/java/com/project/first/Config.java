@@ -15,6 +15,12 @@ public class Config {
 		//return new SimpleTaskService();
 		return new DatabaseTaskService();
 	}
+	
+	@Bean
+	public TaskDataLoader taskDataLoader() {
+		//return new SimpleTaskDataLoader();
+		return new DatabaseTaskDataLoader();
+	}
 
 	@Bean
 	@ConfigurationProperties(prefix = "app.datasource")

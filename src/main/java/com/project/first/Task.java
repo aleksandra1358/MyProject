@@ -22,10 +22,25 @@ public class Task {
 	@Column(name = "DESCRIPTION")
 	private String description;
 	
-	@OneToOne
-	@JoinColumn(name="TASK_DATA_ID")
+	@OneToOne(mappedBy = "task", targetEntity = TaskData.class)
 	private TaskData taskData;
 	
+	public TaskData getTaskData() {
+		return taskData;
+	}
+
+	public void setTaskData(TaskData taskData) {
+		this.taskData = taskData;
+	}
+
+	public Result getResult() {
+		return result;
+	}
+
+	public void setResult(Result result) {
+		this.result = result;
+	}
+
 	@OneToOne(cascade=CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private Result result;

@@ -10,7 +10,15 @@ public interface TaskDataLoader {
 	 * Loads task data.
 	 * 
 	 * @param taskData
-	 *            data for the task
+	 *            data of the task
+	 * 
 	 */
 	public void loadData(TaskData taskData);
+
+	/**
+	 * Returns loaded task data
+	 * 
+	 * @return task data
+	 */
+	public TaskData getLoadedTaskData();
 }
