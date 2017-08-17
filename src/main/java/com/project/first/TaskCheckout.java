@@ -12,5 +12,5 @@ public interface TaskCheckout {
 	 *            a unique id of task
 	 * @return true if the result of the task is ready, in other case return false
 	 */
-	public boolean checkTask(long id);
+	boolean checkTask(long id);
 }

@@ -25,6 +25,10 @@ public class Task {
 	@OneToOne(mappedBy = "task", targetEntity = TaskData.class)
 	private TaskData taskData;
 	
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private Result result;
+	
 	public TaskData getTaskData() {
 		return taskData;
 	}
@@ -41,9 +45,6 @@ public class Task {
 		this.result = result;
 	}
 
-	@OneToOne(cascade=CascadeType.ALL)
-	@PrimaryKeyJoinColumn
-	private Result result;
 
 	public Task() {
 	}

@@ -16,6 +16,8 @@ public class DatabaseTaskDataLoader implements TaskDataLoader {
 	public void loadData(long id, TaskData taskData) {
 		TaskData data = repository.save(taskData);
 		data.setTask(taskRepository.findById(id));
+		taskRepository.findById(id).setTaskData(data);
+		repository.save(taskData);
 		lastId = data.getId();
 
 	}

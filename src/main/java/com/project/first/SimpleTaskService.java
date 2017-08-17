@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class SimpleTaskService implements TaskService {
 
-	private final List<Task> tasks = new ArrayList<>();
+	private static List<Task> tasks = new ArrayList<>();
 	private final AtomicLong counter = new AtomicLong();
 	private TaskData taskData = new TaskData();
 

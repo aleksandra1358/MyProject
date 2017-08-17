@@ -12,14 +12,20 @@ public class Config {
 
 	@Bean
 	public TaskService taskService() {
-		// return new SimpleTaskService();
+//		 return new SimpleTaskService();
 		return new DatabaseTaskService();
 	}
 
 	@Bean
 	public TaskDataLoader taskDataLoader() {
-		// return new SimpleTaskDataLoader();
+//		 return new SimpleTaskDataLoader();
 		return new DatabaseTaskDataLoader();
+	}
+	
+	@Bean
+	public TaskExecutor taskExecutor() {
+//		return new SimpleTaskExecutor();
+		return new DatabaseTaskExecutor();
 	}
 
 	@Bean

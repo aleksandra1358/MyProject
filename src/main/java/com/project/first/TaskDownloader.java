@@ -14,5 +14,5 @@ public interface TaskDownloader {
 	 * 
 	 * @return list of all existing tasks
 	 */
-	public ResponseEntity<ArrayList<Task>> downloadExistingTasks();
+	ResponseEntity<ArrayList<Task>> downloadExistingTasks();
 }

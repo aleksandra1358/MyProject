@@ -15,6 +15,9 @@ public class TaskDataLoaderTest {
 
 	@Autowired
 	private TaskDataLoader taskDataLoader;
+	
+	@Autowired
+	private TaskService taskService;
 
 	@Test
 	public void loadData_sameOperation() {
@@ -26,7 +29,8 @@ public class TaskDataLoaderTest {
 		taskData.setNumbers(numbers);
 		Operation operation = Operation.ADD;
 		taskData.setOperation(operation);
-		taskDataLoader.loadData(1,taskData);
+		long id = taskService.produceTask("aaa");
+		taskDataLoader.loadData(id,taskData);
 		assertEquals(operation, taskDataLoader.getLoadedTaskData().getOperation());
 	}
 
@@ -40,7 +44,8 @@ public class TaskDataLoaderTest {
 		taskData.setNumbers(numbers);
 		Operation operation = Operation.ADD;
 		taskData.setOperation(operation);
-		taskDataLoader.loadData(1,taskData);
+		long id = taskService.produceTask("aaa");
+		taskDataLoader.loadData(id,taskData);
 		ArrayList<Integer> loadedNumbers = new ArrayList<Integer>(taskDataLoader.getLoadedTaskData().getNumbers());
 		for (int i = 0; i < 5; i++) {
 			if (numbers.get(i) != loadedNumbers.get(i)) {

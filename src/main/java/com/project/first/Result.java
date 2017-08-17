@@ -14,5 +14,26 @@ public class Result {
 	private Long id;
 
 	@Column(name = "RESULT_VALUE")
-	private int result;
+	private double value;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		if(this.id==null) {
+			this.id = id;
+		}
+		
+	}
+
+	public double getValue() {
+		return value;
+	}
+
+	public void setValue(double value) {
+		this.value = value;
+	}
+	
+	
 }

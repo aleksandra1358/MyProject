@@ -16,12 +16,12 @@ public interface TaskDataLoader {
 	 *            an id of the task
 	 * 
 	 */
-	public void loadData(long id, TaskData taskData);
+	void loadData(long id, TaskData taskData);
 
 	/**
 	 * Returns loaded task data
 	 * 
 	 * @return task data
 	 */
-	public TaskData getLoadedTaskData();
+	TaskData getLoadedTaskData();
 }
