@@ -1,5 +1,8 @@
 package com.project.first;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Arrays;
 
 import javax.persistence.NoResultException;
@@ -134,6 +137,22 @@ public class TaskExecutorTest {
 		Task task = createTask();
 		task.setResult(null);
 		taskExecutor.downloadResult(task.getId());
+	}
+
+	@Test
+	public void checkTask_existResult() {
+
+		Task task = createTask();
+		createTaskData(task, Operation.ADD, 1, 2, 3);
+		taskExecutor.executeTask(task.getId());
+		assertTrue(taskExecutor.checkTask(task.getId()));
+	}
+	
+	@Test
+	public void checkTask_NoResult() {
+		Task task = createTask();
+		createTaskData(task, Operation.ADD, 1, 2, 3);
+		assertFalse(taskExecutor.checkTask(task.getId()));
 	}
 
 	private void verifyExecutor(Operation operation, double expectedResult, Integer... values) {

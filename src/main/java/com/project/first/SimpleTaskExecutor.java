@@ -54,6 +54,16 @@ public class SimpleTaskExecutor implements TaskExecutor {
 		throw new NoResultException();
 
 	}
+	
+	@Override
+	public boolean checkTask(long id) {
+		for (Result result : results) {
+			if (result.getId() == id) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	private double add(ArrayList<Integer> numbers) {
 		noNumber(numbers);
@@ -102,5 +112,7 @@ public class SimpleTaskExecutor implements TaskExecutor {
 			throw new IllegalArgumentException();
 		}
 	}
+
+	
 
 }

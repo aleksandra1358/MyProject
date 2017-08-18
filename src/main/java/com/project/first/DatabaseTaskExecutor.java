@@ -13,6 +13,7 @@ public class DatabaseTaskExecutor implements TaskExecutor {
 
 	@Autowired
 	private ResultRepository resultRepository;
+float a = 1f;
 
 	@Override
 	public void executeTask(long id) {
@@ -51,6 +52,15 @@ public class DatabaseTaskExecutor implements TaskExecutor {
 		}
 		return resultRepository.findById(id).getValue();
 	}
+	
+	@Override
+	public boolean checkTask(long id) {
+		if (resultRepository.findById(id) == null) {
+			return false;
+		}
+		return true;
+	}
+
 
 	private double add(ArrayList<Integer> numbers) {
 		noNumber(numbers);
@@ -100,4 +110,5 @@ public class DatabaseTaskExecutor implements TaskExecutor {
 		}
 	}
 
+	
 }

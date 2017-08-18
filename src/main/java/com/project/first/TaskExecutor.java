@@ -22,4 +22,13 @@ public interface TaskExecutor {
 	 * @return the result of the task
 	 */
 	double downloadResult(long id);
+	
+	/**
+	 * Checks if the result of the task which id is given is ready.
+	 * 
+	 * @param id
+	 *            a unique id of task
+	 * @return true if the result of the task is ready, in other case return false
+	 */
+	boolean checkTask(long id);
 }
