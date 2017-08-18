@@ -1,4 +1,4 @@
-package com.project.first;
+package com.project.first.taskdata;
 
 /**
  * Loads task data.
@@ -16,7 +16,7 @@ public interface TaskDataLoader {
 	 *            an id of the task
 	 * 
 	 */
-	void loadData(long id, TaskData taskData);
+	void addTaskDataToTask(long id, TaskData taskData);
 
 	/**
 	 * Returns loaded task data

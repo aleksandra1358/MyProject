@@ -1,4 +1,4 @@
-package com.project.first;
+package com.project.first.greeting;
 
 import java.util.concurrent.atomic.AtomicLong;
 

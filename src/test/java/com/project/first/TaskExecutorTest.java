@@ -14,6 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.project.first.task.Task;
+import com.project.first.task.TaskService;
+import com.project.first.taskdata.TaskData;
+import com.project.first.taskdata.TaskDataLoader;
+import com.project.first.taskexecutor.TaskExecutor;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TaskExecutorTest {
@@ -169,7 +175,7 @@ public class TaskExecutorTest {
 		TaskData taskData = new TaskData();
 		taskData.setNumbers(Arrays.asList(values));
 		taskData.setOperation(operation);
-		taskDataLoader.loadData(task.getId(), taskData);
+		taskDataLoader.addTaskDataToTask(task.getId(), taskData);
 		return taskData;
 	}
 

@@ -1,14 +1,25 @@
-package com.project.first;
+package com.project.first.task;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import javax.annotation.PostConstruct;
+
+import com.project.first.taskdata.TaskData;
+
 public class SimpleTaskService implements TaskService {
 
-	private final List<Task> tasks = new ArrayList<>();
-	private final AtomicLong counter = new AtomicLong();
-	private TaskData taskData = new TaskData();
+	private List<Task> tasks;
+	private AtomicLong counter;
+	private TaskData taskData;
+
+	@PostConstruct
+	public void init() {
+		tasks = new ArrayList<>();
+		counter = new AtomicLong();
+		taskData = new TaskData();
+	}
 
 	public TaskData getTaskData() {
 		return taskData;
@@ -34,7 +45,7 @@ public class SimpleTaskService implements TaskService {
 				return task;
 			}
 		}
-		return null;
+		throw new IllegalArgumentException("There is no task with given id");
 	}
 
 }

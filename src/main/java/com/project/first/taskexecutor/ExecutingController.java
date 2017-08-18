@@ -1,4 +1,4 @@
-package com.project.first;
+package com.project.first.taskexecutor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

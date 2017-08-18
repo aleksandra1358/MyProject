@@ -1,4 +1,4 @@
-package com.project.first;
+package com.project.first.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,8 +11,7 @@ public class DatabaseTaskService implements TaskService {
 	public long produceTask(String description) {
 		Task task = new Task();
 		task.setDescription(description);
-		Task task2 = taskRepository.save(task);
-		return task2.getId();
+		return taskRepository.save(task).getId();
 	}
 
 	@Override

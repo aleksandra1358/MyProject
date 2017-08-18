@@ -1,4 +1,4 @@
-package com.project.first;
+package com.project.first.result;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,10 +21,10 @@ public class Result {
 	}
 
 	public void setId(Long id) {
-		if(this.id==null) {
+		if (this.id == null) {
 			this.id = id;
 		}
-		
+
 	}
 
 	public double getValue() {
@@ -34,6 +34,5 @@ public class Result {
 	public void setValue(double value) {
 		this.value = value;
 	}
-	
-	
+
 }

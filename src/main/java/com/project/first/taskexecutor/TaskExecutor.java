@@ -1,4 +1,4 @@
-package com.project.first;
+package com.project.first.taskexecutor;
 
 /**
  * Executes a task by given id. Downloads the result of the task which id is

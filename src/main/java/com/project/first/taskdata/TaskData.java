@@ -1,4 +1,4 @@
-package com.project.first;
+package com.project.first.taskdata;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.project.first.Operation;
+import com.project.first.task.Task;
 
 @Entity
 @Table(name = "TASK_DATA")

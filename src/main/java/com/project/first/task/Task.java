@@ -1,4 +1,4 @@
-package com.project.first;
+package com.project.first.task;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -6,10 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import com.project.first.result.Result;
+import com.project.first.taskdata.TaskData;
 
 @Entity
 @Table(name = "TASK")
@@ -21,14 +23,14 @@ public class Task {
 
 	@Column(name = "DESCRIPTION")
 	private String description;
-	
+
 	@OneToOne(mappedBy = "task", targetEntity = TaskData.class)
 	private TaskData taskData;
-	
-	@OneToOne(cascade=CascadeType.ALL)
+
+	@OneToOne(cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private Result result;
-	
+
 	public TaskData getTaskData() {
 		return taskData;
 	}
@@ -45,7 +47,6 @@ public class Task {
 		this.result = result;
 	}
 
-
 	public Task() {
 	}
 
@@ -61,7 +62,7 @@ public class Task {
 		return description;
 	}
 
-	public void setId(Long id) {
+	void setId(Long id) {
 		if (this.id == null) {
 			this.id = id;
 		}

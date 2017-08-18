@@ -1,18 +1,29 @@
-package com.project.first;
+package com.project.first.task;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.project.first.taskdata.TaskData;
+import com.project.first.taskdata.TaskDataLoader;
+
 public class SimpleTaskDataLoader implements TaskDataLoader {
 
-	private final ArrayList<TaskData> taskDataList = new ArrayList<>();
-	
+	private List<TaskData> taskDataList;
+
 	@Autowired
 	private TaskService taskService;
 
+	@PostConstruct
+	public void init() {
+		taskDataList = new ArrayList<>();
+	}
+
 	@Override
-	public void loadData(long id, TaskData taskData) {
+	public void addTaskDataToTask(long id, TaskData taskData) {
 		TaskData data = taskData;
 		data.setTask(taskService.findTaskById(id));
 		taskService.findTaskById(id).setTaskData(data);

@@ -1,4 +1,4 @@
-package com.project.first;
+package com.project.first.greeting;
 
 public class Greeting {
 	

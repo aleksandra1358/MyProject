@@ -1,9 +1,8 @@
-package com.project.first;
+package com.project.first.task;
 
 /**
  * Creates a new task.
  */
-// TODO: do not use ing in names
 public interface TaskService {
 
 	/**
