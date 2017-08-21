@@ -56,13 +56,20 @@ public class TaskServiceTest {
 		Assert.assertEquals(taskService.findTaskById(id).getDescription(), description);
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void findTaskById_withZeroId() {
-		Assert.assertNull(taskService.findTaskById(0));
+		taskService.findTaskById(0);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void findTaskById_withNegativeId() {
+		taskService.findTaskById(-3);
 	}
 
 	@Test
-	public void findTaskById_withNegativeId() {
-		Assert.assertNull(taskService.findTaskById(-3));
+	public void downloadExistingTasks_quantity() {
+		long id = taskService.produceTask("abc");
+
+		Assert.assertTrue(taskService.downloadExistingTasks().size() == id);
 	}
 }

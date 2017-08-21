@@ -1,5 +1,7 @@
 package com.project.first.task;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class DatabaseTaskService implements TaskService {
@@ -16,7 +18,15 @@ public class DatabaseTaskService implements TaskService {
 
 	@Override
 	public Task findTaskById(long id) {
-		return taskRepository.findById(id);
+		if (id > 0) {
+			return taskRepository.findById(id);
+		}
+		throw new IllegalArgumentException();
+	}
+
+	@Override
+	public List<Task> downloadExistingTasks() {
+		return taskRepository.findAll();
 	}
 
 }

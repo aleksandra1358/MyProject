@@ -48,4 +48,9 @@ public class SimpleTaskService implements TaskService {
 		throw new IllegalArgumentException("There is no task with given id");
 	}
 
+	@Override
+	public List<Task> downloadExistingTasks() {
+		return tasks;
+	}
+
 }

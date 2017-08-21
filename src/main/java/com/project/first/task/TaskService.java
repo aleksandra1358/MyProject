@@ -1,5 +1,7 @@
 package com.project.first.task;
 
+import java.util.List;
+
 /**
  * Creates a new task.
  */
@@ -21,4 +23,11 @@ public interface TaskService {
 	 * @return task for given ID
 	 */
 	Task findTaskById(long id);
+
+	/**
+	 * Downloads all existing tasks.
+	 * 
+	 * @return list of all existing tasks
+	 */
+	List<Task> downloadExistingTasks();
 }

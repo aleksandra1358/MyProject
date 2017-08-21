@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.first.Operation;
 import com.project.first.task.Task;
 
@@ -36,9 +37,10 @@ public class TaskData {
 	@Column(name = "OPERATION")
 	@Enumerated(EnumType.STRING)
 	private Operation operation;
-	
+
+	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name="TASK_ID")
+	@JoinColumn(name = "TASK_ID")
 	private Task task;
 
 	public Long getId() {
@@ -56,8 +58,6 @@ public class TaskData {
 	public void setTask(Task task) {
 		this.task = task;
 	}
-
-	
 
 	public List<Integer> getNumbers() {
 		return numbers;
