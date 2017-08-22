@@ -6,9 +6,6 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import com.project.first.task.DatabaseTaskService;
 import com.project.first.task.TaskService;
@@ -18,8 +15,7 @@ import com.project.first.taskexecutor.DatabaseTaskExecutor;
 import com.project.first.taskexecutor.TaskExecutor;
 
 @Configuration
-@EnableWebSecurity
-public class Config extends WebSecurityConfigurerAdapter {
+public class Config {
 
 	@Bean
 	public TaskService taskService() {
@@ -49,12 +45,6 @@ public class Config extends WebSecurityConfigurerAdapter {
 				.build();
 		// @formatter:on
 
-	}
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-
-		http.csrf().disable();
 	}
 
 }
