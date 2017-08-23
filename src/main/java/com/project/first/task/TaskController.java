@@ -28,17 +28,4 @@ public class TaskController {
 	public long produceTask(@RequestParam(value = "description", required = false) String description) {
 		return service.produceTask(description);
 	}
-
-    @PostMapping("tasksGenerator")
-    public void generateTasks(@RequestParam(value = "amount") int amount) {
-        for(int i = 0; i < amount; i++)
-        {
-            service.produceTask();
-        }
-    }
-
-    @PutMapping("taskdata/{taskId}")
-    public void addTaskData(@PathVariable("taskId") long id, @RequestBody TaskData taskData) {
-        taskDataLoader.addTaskDataToTask(id, taskData);
-    }
 }

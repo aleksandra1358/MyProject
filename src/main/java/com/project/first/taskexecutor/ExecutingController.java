@@ -20,11 +20,6 @@ public class ExecutingController {
         this.repository = repository;
     }
 
-//    @RequestMapping("/execute")
-//	public void executeTask(@RequestParam(value = "id") long id) {
-//		taskExecutor.executeTask(id);
-//	}
-
 	@RequestMapping("/execute")
 	public void executeAll() {
 		repository.findAll().forEach(task -> {

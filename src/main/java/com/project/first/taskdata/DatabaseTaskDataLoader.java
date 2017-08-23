@@ -19,19 +19,12 @@ public class DatabaseTaskDataLoader implements TaskDataLoader {
 	public void addTaskDataToTask(long id, TaskData taskData) {
 		Task task = taskRepository.findById(id);
 		if(task == null) {
-			//TODO: which should be used and when
-			// find 2 more interesting (the most common/popular) exceptions
-//			IllegalStateException
-//			NullPointerException
 			throw new IllegalArgumentException(String.format("Task does not exist: %d", id));
 		}
-		
-		TaskData data = repository.save(taskData);
-		data.setTask(task);
-		taskRepository.findById(id).setTaskData(data);
-		repository.save(taskData);
-		lastId = data.getId();
 
+		task.setTaskData(taskData);
+		taskData.setTask(task);
+		taskRepository.save(task);
 	}
 
 	@Override

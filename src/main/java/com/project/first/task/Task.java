@@ -24,7 +24,7 @@ public class Task {
 	@Column(name = "DESCRIPTION")
 	private String description;
 
-	@OneToOne(mappedBy = "task", targetEntity = TaskData.class)
+	@OneToOne(mappedBy = "task", targetEntity = TaskData.class, cascade = CascadeType.ALL)
 	private TaskData taskData;
 
 	@OneToOne(cascade = CascadeType.ALL)
