@@ -16,6 +16,12 @@ public class DatabaseTaskService implements TaskService {
 		return taskRepository.save(task).getId();
 	}
 
+	public Task produceTask() {
+		Task task = new Task();
+		task.setDescription("Test");
+		return taskRepository.save(task);
+	}
+
 	@Override
 	public Task findTaskById(long id) {
 		if (id > 0) {

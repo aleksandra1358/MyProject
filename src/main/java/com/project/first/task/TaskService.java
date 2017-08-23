@@ -30,4 +30,10 @@ public interface TaskService {
 	 * @return list of all existing tasks
 	 */
 	List<Task> downloadExistingTasks();
+
+    /**
+     * Create new task, allow to make task lists from task service.
+     * @return created task
+     */
+	Task produceTask();
 }

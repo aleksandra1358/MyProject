@@ -1,15 +1,12 @@
 package com.project.first.task;
 
-import java.util.List;
-
+import com.project.first.taskdata.TaskData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class TaskController {
@@ -32,4 +29,16 @@ public class TaskController {
 		return service.produceTask(description);
 	}
 
+    @PostMapping("tasksGenerator")
+    public void generateTasks(@RequestParam(value = "amount") int amount) {
+        for(int i = 0; i < amount; i++)
+        {
+            service.produceTask();
+        }
+    }
+
+    @PutMapping("taskdata/{taskId}")
+    public void addTaskData(@PathVariable("taskId") long id, @RequestBody TaskData taskData) {
+        taskDataLoader.addTaskDataToTask(id, taskData);
+    }
 }
