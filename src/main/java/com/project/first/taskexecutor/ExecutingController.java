@@ -31,5 +31,4 @@ public class ExecutingController {
 	public double downloadResult(@RequestParam(value = "id") long id) {
 		return taskExecutor.downloadResult(id);
 	}
-
 }

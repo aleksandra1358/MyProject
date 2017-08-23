@@ -25,8 +25,8 @@ public class GenerationController
     public void generateTasks(@RequestParam(value = "amount") int amount, @RequestBody TaskData taskData) {
         for(int i = 1; i <= amount; i++)
         {
-            service.produceTask();
-            taskDataLoader.addTaskDataToTask(i, taskData);
+            Task task = service.produceTask();
+            taskDataLoader.addTaskDataToTask(task.getId(), taskData);
         }
     }
 }
