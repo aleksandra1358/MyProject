@@ -5,6 +5,7 @@ import com.project.first.taskexecutor.TaskExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 @Service
+@ConfigurationProperties(prefix = "schedule")
 public class ScheduledTasks
 {
     private static boolean isWorking = false;
@@ -30,7 +32,7 @@ public class ScheduledTasks
         this.taskExecutor = taskExecutor;
     }
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRateString = "${schedule.executeTasks}")
     public void schedule()
     {
         if(!isWorking)
