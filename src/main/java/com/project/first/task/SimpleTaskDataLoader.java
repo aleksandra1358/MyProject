@@ -32,7 +32,7 @@ public class SimpleTaskDataLoader implements TaskDataLoader {
 	}
 
 	@Override
-	public TaskData getLoadedTaskData() {
+	public TaskData getTaskData(long id) {
 		return taskDataList.get(taskDataList.size() - 1);
 	}
 

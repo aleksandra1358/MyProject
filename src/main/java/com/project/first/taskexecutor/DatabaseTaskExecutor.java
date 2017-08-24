@@ -15,6 +15,9 @@ import javax.persistence.NoResultException;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * This class needs to be a @Service for @Async to work.
+ */
 @Service
 public class DatabaseTaskExecutor implements TaskExecutor {
 

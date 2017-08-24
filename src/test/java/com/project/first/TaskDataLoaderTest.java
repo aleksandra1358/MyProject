@@ -37,7 +37,7 @@ public class TaskDataLoaderTest {
 		taskData.setOperation(operation);
 		long id = taskService.produceTask("aaa");
 		taskDataLoader.addTaskDataToTask(id, taskData);
-		assertEquals(operation, taskDataLoader.getLoadedTaskData().getOperation());
+		assertEquals(operation, taskDataLoader.getTaskData(id).getOperation());
 	}
 
 	@Test
@@ -52,7 +52,7 @@ public class TaskDataLoaderTest {
 		taskData.setOperation(operation);
 		long id = taskService.produceTask("aaa");
 		taskDataLoader.addTaskDataToTask(id, taskData);
-		ArrayList<Integer> loadedNumbers = new ArrayList<Integer>(taskDataLoader.getLoadedTaskData().getNumbers());
+		ArrayList<Integer> loadedNumbers = new ArrayList<>(taskDataLoader.getTaskData(id).getNumbers());
 		for (int i = 0; i < 5; i++) {
 			if (numbers.get(i) != loadedNumbers.get(i)) {
 				fail("Numbers are different");

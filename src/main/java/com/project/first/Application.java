@@ -12,17 +12,22 @@ import java.util.concurrent.Executor;
 @SpringBootApplication
 @EnableScheduling
 @EnableAsync
-public class Application {
-	public static void main(String[] args) {
+public class Application
+{
+    private static final int INFINITE = 10000000;
+
+    public static void main(String[] args)
+    {
         SpringApplication.run(Application.class, args);
     }
 
     @Bean
-    public Executor asyncExecutor() {
+    public Executor asyncExecutor()
+    {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(10);
         executor.setMaxPoolSize(10);
-        executor.setQueueCapacity(10000000);
+        executor.setQueueCapacity(INFINITE);
         executor.setThreadNamePrefix("Calculation-");
         executor.initialize();
         return executor;

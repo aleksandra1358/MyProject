@@ -13,8 +13,6 @@ public class DatabaseTaskDataLoader implements TaskDataLoader {
 	@Autowired
 	private TaskRepository taskRepository;
 
-	private Long lastId;
-
 	@Override
 	public void addTaskDataToTask(long id, TaskData taskData) {
 		Task task = taskRepository.findById(id);
@@ -28,8 +26,8 @@ public class DatabaseTaskDataLoader implements TaskDataLoader {
 	}
 
 	@Override
-	public TaskData getLoadedTaskData() {
-		return repository.findById(lastId);
+	public TaskData getTaskData(long id) {
+		return taskRepository.findById(id).getTaskData();
 	}
 
 }
