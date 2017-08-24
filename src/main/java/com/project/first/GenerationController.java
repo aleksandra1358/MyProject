@@ -34,6 +34,7 @@ public class GenerationController
     @DeleteMapping("drop")
     public void deleteAllTasks()
     {
-        repository.findAll().forEach(t -> repository.delete(t.getId()));
+//        repository.findAll().forEach(t -> repository.delete(t.getId()));
+        repository.deleteAll();
     }
 }

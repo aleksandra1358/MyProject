@@ -54,10 +54,5 @@ public class ScheduledTasks
             log.info("Stop!");
             isWorking = false;
         }
-        //todo enter if not working
-        //todo set isWorking = true
-        //todo set isWorking = false, need to get result from the calculation, try Optional<Void>
-        //log.info("Execution!");
-        //repository.findAll().forEach(task -> taskExecutor.executeTask(task.getId()));
     }
 }

@@ -1,14 +1,10 @@
 package com.project.first.taskdata;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.project.first.task.Task;
 import com.project.first.task.TaskRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class DatabaseTaskDataLoader implements TaskDataLoader {
-
-	@Autowired
-	private TaskDataRepository repository;
 
 	@Autowired
 	private TaskRepository taskRepository;

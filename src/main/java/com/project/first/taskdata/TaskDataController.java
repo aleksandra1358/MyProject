@@ -34,7 +34,7 @@ public class TaskDataController {
 		numbers.add(3);
 		taskData.setNumbers(numbers);
 		taskData.setOperation(Operation.ADD);
-		return new ResponseEntity<TaskData>(taskData, HttpStatus.OK);
+		return new ResponseEntity<>(taskData, HttpStatus.OK);
 	}
 
 }
