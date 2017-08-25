@@ -20,19 +20,19 @@ public class TaskServiceTest {
 	private TaskService taskService;
 
 	@Test
-	public void produceTask_withDesciption() {
+	public void produceTask_withDescription() {
 		long id = taskService.produceTask("foo");
 		Assert.assertTrue(id > 0);
 	}
 
 	@Test
-	public void produceTask_withoutDesciption() {
-		long id = taskService.produceTask("");
+	public void produceTask_withoutDescription() {
+		long id = taskService.produceTask("foo");
 		Assert.assertTrue(id > 0);
 	}
 
 	@Test
-	public void produceTask_withNullDesciption() {
+	public void produceTask_withNullDescription() {
 		long id = taskService.produceTask(null);
 		Assert.assertTrue(id > 0);
 	}
@@ -41,7 +41,7 @@ public class TaskServiceTest {
 	public void produceTask_isIdUnique() {
 		Set<Long> ids = new HashSet<>();
 		for (int i = 0; i < 10; i++) {
-			ids.add(taskService.produceTask(""));
+			ids.add(taskService.produceTask("foo"));
 		}
 		if (ids.size() != 10) {
 			Assert.fail("Id isn't unique");
@@ -68,7 +68,7 @@ public class TaskServiceTest {
 
 	@Test
 	public void downloadExistingTasks_quantity() {
-		long id = taskService.produceTask("abc");
+		long id = taskService.produceTask("foo");
 
 		Assert.assertTrue(taskService.downloadExistingTasks().size() == id);
 	}
