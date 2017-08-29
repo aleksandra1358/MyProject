@@ -30,12 +30,12 @@ public class SimpleTaskService implements TaskService {
 	}
 
 	@Override
-	public long produceTask(String description) {
+	public Task produceTask(String description) {
 		Task task = new Task();
 		task.setDescription(description);
 		task.setId(counter.incrementAndGet());
 		tasks.add(task);
-		return task.getId();
+		return task;
 	}
 
 	@Override
@@ -53,10 +53,9 @@ public class SimpleTaskService implements TaskService {
 		return tasks;
 	}
 
-    @Override
-    public Task produceTask()
-    {
-        return null;
-    }
+	@Override
+	public Task produceTask() {
+		return null;
+	}
 
 }

@@ -14,7 +14,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.project.first.task.Task;
@@ -156,7 +155,7 @@ public class TaskExecutorTest {
 		taskExecutor.executeTask(task.getId());
 		assertTrue(taskExecutor.checkTask(task.getId()));
 	}
-	
+
 	@Test
 	public void checkTask_NoResult() {
 		Task task = createTask();
@@ -164,35 +163,33 @@ public class TaskExecutorTest {
 		assertFalse(taskExecutor.checkTask(task.getId()));
 	}
 
-//  todo original test, below is mine async verify executor.
-//	private void verifyExecutor(Operation operation, double expectedResult, Integer... values) {
-//		Task task = createTask();
-//		createTaskData(task, operation, values);
-//
-//		taskExecutor.executeTask(task.getId());
-//		double result = taskExecutor.downloadResult(task.getId());
-//
-//		Assert.assertEquals(expectedResult, result, 0);
-//	}
+	// todo original test, below is mine async verify executor.
+	// private void verifyExecutor(Operation operation, double expectedResult,
+	// Integer... values) {
+	// Task task = createTask();
+	// createTaskData(task, operation, values);
+	//
+	// taskExecutor.executeTask(task.getId());
+	// double result = taskExecutor.downloadResult(task.getId());
+	//
+	// Assert.assertEquals(expectedResult, result, 0);
+	// }
 
-    private void verifyExecutor(Operation operation, double expectedResult, Integer... values) {
-        Task task = createTask();
-        createTaskData(task, operation, values);
-        Future<String> future;
+	private void verifyExecutor(Operation operation, double expectedResult, Integer... values) {
+		Task task = createTask();
+		createTaskData(task, operation, values);
+		Future<String> future;
 
-        future = taskExecutor.executeTask(task.getId());
-        try
-        {
-            future.get();
-        }
-        catch(InterruptedException | ExecutionException e)
-        {
-            e.printStackTrace();
-        }
-        double result = taskExecutor.downloadResult(task.getId());
+		future = taskExecutor.executeTask(task.getId());
+		try {
+			future.get();
+		} catch (InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+		}
+		double result = taskExecutor.downloadResult(task.getId());
 
-        Assert.assertEquals(expectedResult, result, 0);
-    }
+		Assert.assertEquals(expectedResult, result, 0);
+	}
 
 	private TaskData createTaskData(Task task, Operation operation, Integer... values) {
 		TaskData taskData = new TaskData();
@@ -203,7 +200,7 @@ public class TaskExecutorTest {
 	}
 
 	private Task createTask() {
-		long id = taskService.produceTask("test");
+		long id = taskService.produceTask("test").getId();
 		return taskService.findTaskById(id);
 	}
 }

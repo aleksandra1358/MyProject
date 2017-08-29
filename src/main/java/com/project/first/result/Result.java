@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.project.first.task.Task;
+
 @Entity
 @Table(name = "RESULT")
 public class Result {
@@ -20,9 +22,9 @@ public class Result {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setTask(Task id) {
 		if (this.id == null) {
-			this.id = id;
+			this.id = id.getId();
 		}
 
 	}

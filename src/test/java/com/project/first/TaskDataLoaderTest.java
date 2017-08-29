@@ -35,7 +35,7 @@ public class TaskDataLoaderTest {
 		taskData.setNumbers(numbers);
 		Operation operation = Operation.ADD;
 		taskData.setOperation(operation);
-		long id = taskService.produceTask("aaa");
+		long id = taskService.produceTask("aaa").getId();
 		taskDataLoader.addTaskDataToTask(id, taskData);
 		assertEquals(operation, taskDataLoader.getTaskData(id).getOperation());
 	}
@@ -50,7 +50,7 @@ public class TaskDataLoaderTest {
 		taskData.setNumbers(numbers);
 		Operation operation = Operation.ADD;
 		taskData.setOperation(operation);
-		long id = taskService.produceTask("aaa");
+		long id = taskService.produceTask("aaa").getId();
 		taskDataLoader.addTaskDataToTask(id, taskData);
 		ArrayList<Integer> loadedNumbers = new ArrayList<>(taskDataLoader.getTaskData(id).getNumbers());
 		for (int i = 0; i < 5; i++) {

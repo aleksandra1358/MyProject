@@ -3,32 +3,30 @@ package com.project.first.task;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 public class DatabaseTaskService implements TaskService {
 
 	@Autowired
 	private TaskRepository taskRepository;
 
-	@Override
-	public long produceTask(String description) {
-		Task task = new Task();
-		task.setDescription(description);
-		return taskRepository.save(task).getId();
+	public Task produceTask() {
+		return produceTask("Test");
 	}
 
-	public Task produceTask() {
+	@Override
+	public Task produceTask(String description) {
 		Task task = new Task();
-		task.setDescription("Test");
+		task.setDescription(description);
 		return taskRepository.save(task);
 	}
 
 	@Override
 	public Task findTaskById(long id) {
-		if (id > 0) {
-			return taskRepository.findById(id);
+		if (id < 1) {
+			throw new IllegalArgumentException("Id must be greater than zero");
 		}
-		throw new IllegalArgumentException();
+
+		return taskRepository.findById(id);
 	}
 
 	@Override

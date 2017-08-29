@@ -14,7 +14,14 @@ public interface TaskService {
 	 *            a description, can be null or empty.
 	 * @return a unique ID of newly created task, greater than zero
 	 */
-	long produceTask(String description);
+	Task produceTask(String description);
+
+	/**
+	 * Create new task, allow to make task lists from task service.
+	 * 
+	 * @return created task
+	 */
+	Task produceTask();
 
 	/**
 	 * 
@@ -31,9 +38,4 @@ public interface TaskService {
 	 */
 	List<Task> downloadExistingTasks();
 
-    /**
-     * Create new task, allow to make task lists from task service.
-     * @return created task
-     */
-	Task produceTask();
 }

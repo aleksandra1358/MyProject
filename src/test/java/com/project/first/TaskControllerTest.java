@@ -8,7 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -20,8 +19,7 @@ public class TaskControllerTest {
 
 	@Test
 	public void produceTask_withAuthorization() {
-		ResponseEntity<String> response = template.withBasicAuth("user", "pas")
-				.getForEntity("/tasks", String.class);
+		ResponseEntity<String> response = template.withBasicAuth("user", "pas").getForEntity("/tasks", String.class);
 		Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
 	}
 
