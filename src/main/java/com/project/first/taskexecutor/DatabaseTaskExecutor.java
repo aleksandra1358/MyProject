@@ -1,10 +1,15 @@
 package com.project.first.taskexecutor;
 
-import com.project.first.result.Result;
-import com.project.first.result.ResultRepository;
-import com.project.first.task.Task;
-import com.project.first.task.TaskRepository;
-import com.project.first.taskdata.TaskData;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Future;
+import java.util.function.Function;
+
+import javax.annotation.PostConstruct;
+import javax.persistence.NoResultException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +17,12 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.NoResultException;
-import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.Future;
+import com.project.first.Operation;
+import com.project.first.result.Result;
+import com.project.first.result.ResultRepository;
+import com.project.first.task.Task;
+import com.project.first.task.TaskRepository;
+import com.project.first.taskdata.TaskData;
 
 /**
  * This class needs to be a @Service for @Async to work.
@@ -23,7 +30,7 @@ import java.util.concurrent.Future;
 @Service
 public class DatabaseTaskExecutor implements TaskExecutor {
 
-	private static final Logger log = LoggerFactory.getLogger(DatabaseTaskExecutor.class);
+	private static final Logger LONG = LoggerFactory.getLogger(DatabaseTaskExecutor.class);
 
 	@Autowired
 	private TaskRepository taskRepository;
@@ -31,16 +38,37 @@ public class DatabaseTaskExecutor implements TaskExecutor {
 	@Autowired
 	private ResultRepository resultRepository;
 
+	private Map<Operation, Function<Task, Result>> map;
+
+	@PostConstruct
+	public void init() {
+		map = new HashMap<>();
+		map.put(Operation.ADD, (task) -> {
+			Result result = new Result();
+			result.setTask(task);
+			result.setValue(add(task.getTaskData().getNumbers()));
+			return result;
+		});
+	}
+
+	@Async
+	public void executeTask2(long id) {
+		Task task = findTask(id);
+		Function<Task, Result> function = map.get(Operation.ADD);
+		Result apply = function.apply(task);
+		resultRepository.save(apply);
+	}
+
 	@Async
 	@Override
 	public Future<String> executeTask(long id) {
 
-		log.info(String.format("Executing task %d", id));
+		LONG.info(String.format("Executing task %d", id));
 		Task task = taskRepository.findById(id);
 		TaskData taskData = task.getTaskData();
 
 		Result result = new Result();
-		result.setId(id);
+		result.setTask(task);
 		switch (taskData.getOperation()) {
 		case ADD:
 			result.setValue(add(taskData.getNumbers()));
@@ -68,7 +96,7 @@ public class DatabaseTaskExecutor implements TaskExecutor {
 	@Override
 	public double downloadResult(long id) {
 		if (resultRepository.findById(id) == null) {
-			throw new NoResultException();
+			throw new NoResultException(String.format("No result for id: %d", id));
 		}
 		return resultRepository.findById(id).getValue();
 	}
@@ -82,7 +110,7 @@ public class DatabaseTaskExecutor implements TaskExecutor {
 		verifyContent(numbers);
 		double score = 0;
 		for (Integer number : numbers) {
-			score = score + number;
+			score += number;
 		}
 		return score;
 	}
@@ -91,7 +119,7 @@ public class DatabaseTaskExecutor implements TaskExecutor {
 		verifyContent(numbers);
 		double score = numbers.get(0);
 		for (Integer number : numbers) {
-			score = score - number;
+			score -= number;
 		}
 		return score + numbers.get(0);
 	}
@@ -125,4 +153,8 @@ public class DatabaseTaskExecutor implements TaskExecutor {
 		}
 	}
 
+	private Task findTask(long id) {
+		return taskRepository.findById(id);
+
+	}
 }

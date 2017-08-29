@@ -21,19 +21,19 @@ public class TaskServiceTest {
 
 	@Test
 	public void produceTask_withDescription() {
-		long id = taskService.produceTask("foo");
+		long id = taskService.produceTask("foo").getId();
 		Assert.assertTrue(id > 0);
 	}
 
 	@Test
 	public void produceTask_withoutDescription() {
-		long id = taskService.produceTask("foo");
+		long id = taskService.produceTask("foo").getId();
 		Assert.assertTrue(id > 0);
 	}
 
 	@Test
 	public void produceTask_withNullDescription() {
-		long id = taskService.produceTask(null);
+		long id = taskService.produceTask(null).getId();
 		Assert.assertTrue(id > 0);
 	}
 
@@ -41,7 +41,7 @@ public class TaskServiceTest {
 	public void produceTask_isIdUnique() {
 		Set<Long> ids = new HashSet<>();
 		for (int i = 0; i < 10; i++) {
-			ids.add(taskService.produceTask("foo"));
+			ids.add(taskService.produceTask("foo").getId());
 		}
 		if (ids.size() != 10) {
 			Assert.fail("Id isn't unique");
@@ -52,7 +52,7 @@ public class TaskServiceTest {
 	@Test
 	public void findTaskById_checkDescription() {
 		String description = "des";
-		long id = taskService.produceTask(description);
+		long id = taskService.produceTask(description).getId();
 		Assert.assertEquals(taskService.findTaskById(id).getDescription(), description);
 	}
 
@@ -68,7 +68,7 @@ public class TaskServiceTest {
 
 	@Test
 	public void downloadExistingTasks_quantity() {
-		long id = taskService.produceTask("foo");
+		long id = taskService.produceTask("foo").getId();
 
 		Assert.assertTrue(taskService.downloadExistingTasks().size() == id);
 	}
