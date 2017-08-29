@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import com.project.first.result.Result;
 import com.project.first.taskdata.TaskData;
@@ -22,9 +23,10 @@ public class Task {
 	private Long id;
 
 	@Column(name = "DESCRIPTION")
+	@Size(min = 2, max = 20)
 	private String description;
 
-	@OneToOne(mappedBy = "task", targetEntity = TaskData.class)
+	@OneToOne(mappedBy = "task", targetEntity = TaskData.class, cascade = CascadeType.ALL)
 	private TaskData taskData;
 
 	@OneToOne(cascade = CascadeType.ALL)

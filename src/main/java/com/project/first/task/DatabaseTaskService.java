@@ -3,6 +3,7 @@ package com.project.first.task;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 public class DatabaseTaskService implements TaskService {
 
@@ -14,6 +15,12 @@ public class DatabaseTaskService implements TaskService {
 		Task task = new Task();
 		task.setDescription(description);
 		return taskRepository.save(task).getId();
+	}
+
+	public Task produceTask() {
+		Task task = new Task();
+		task.setDescription("Test");
+		return taskRepository.save(task);
 	}
 
 	@Override

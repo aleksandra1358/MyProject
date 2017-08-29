@@ -19,9 +19,9 @@ public interface TaskDataLoader {
 	void addTaskDataToTask(long id, TaskData taskData);
 
 	/**
-	 * Returns loaded task data
+	 * Returns loaded task data... of task with passed id, I resigned from the last id field.
 	 * 
 	 * @return task data
 	 */
-	TaskData getLoadedTaskData();
+	TaskData getTaskData(long id);
 }

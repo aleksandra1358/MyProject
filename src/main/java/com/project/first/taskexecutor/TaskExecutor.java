@@ -1,5 +1,7 @@
 package com.project.first.taskexecutor;
 
+import java.util.concurrent.Future;
+
 /**
  * Executes a task by given id. Downloads the result of the task which id is
  * given.
@@ -12,7 +14,8 @@ public interface TaskExecutor {
 	 * @param id
 	 *            a unique id of task to execute
 	 */
-	void executeTask(long id);
+//	void executeTask(long id);
+	Future<String> executeTask(long id);
 
 	/**
 	 * Downloads the result of the task which id is given.

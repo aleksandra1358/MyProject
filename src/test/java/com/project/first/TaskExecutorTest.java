@@ -4,6 +4,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 import javax.persistence.NoResultException;
 
@@ -12,6 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.project.first.task.Task;
@@ -161,15 +164,35 @@ public class TaskExecutorTest {
 		assertFalse(taskExecutor.checkTask(task.getId()));
 	}
 
-	private void verifyExecutor(Operation operation, double expectedResult, Integer... values) {
-		Task task = createTask();
-		createTaskData(task, operation, values);
+//  todo original test, below is mine async verify executor.
+//	private void verifyExecutor(Operation operation, double expectedResult, Integer... values) {
+//		Task task = createTask();
+//		createTaskData(task, operation, values);
+//
+//		taskExecutor.executeTask(task.getId());
+//		double result = taskExecutor.downloadResult(task.getId());
+//
+//		Assert.assertEquals(expectedResult, result, 0);
+//	}
 
-		taskExecutor.executeTask(task.getId());
-		double result = taskExecutor.downloadResult(task.getId());
+    private void verifyExecutor(Operation operation, double expectedResult, Integer... values) {
+        Task task = createTask();
+        createTaskData(task, operation, values);
+        Future<String> future;
 
-		Assert.assertEquals(expectedResult, result, 0);
-	}
+        future = taskExecutor.executeTask(task.getId());
+        try
+        {
+            future.get();
+        }
+        catch(InterruptedException | ExecutionException e)
+        {
+            e.printStackTrace();
+        }
+        double result = taskExecutor.downloadResult(task.getId());
+
+        Assert.assertEquals(expectedResult, result, 0);
+    }
 
 	private TaskData createTaskData(Task task, Operation operation, Integer... values) {
 		TaskData taskData = new TaskData();

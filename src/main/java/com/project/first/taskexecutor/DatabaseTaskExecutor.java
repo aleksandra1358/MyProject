@@ -1,19 +1,29 @@
 package com.project.first.taskexecutor;
 
-import java.util.Collection;
-import java.util.List;
-
-import javax.persistence.NoResultException;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.project.first.result.Result;
 import com.project.first.result.ResultRepository;
 import com.project.first.task.Task;
 import com.project.first.task.TaskRepository;
 import com.project.first.taskdata.TaskData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
+import org.springframework.stereotype.Service;
 
+import javax.persistence.NoResultException;
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.Future;
+
+/**
+ * This class needs to be a @Service for @Async to work.
+ */
+@Service
 public class DatabaseTaskExecutor implements TaskExecutor {
+
+	private static final Logger log = LoggerFactory.getLogger(DatabaseTaskExecutor.class);
 
 	@Autowired
 	private TaskRepository taskRepository;
@@ -21,9 +31,11 @@ public class DatabaseTaskExecutor implements TaskExecutor {
 	@Autowired
 	private ResultRepository resultRepository;
 
+	@Async
 	@Override
-	public void executeTask(long id) {
+	public Future<String> executeTask(long id) {
 
+		log.info(String.format("Executing task %d", id));
 		Task task = taskRepository.findById(id);
 		TaskData taskData = task.getTaskData();
 
@@ -50,7 +62,7 @@ public class DatabaseTaskExecutor implements TaskExecutor {
 			break;
 
 		}
-
+		return new AsyncResult<>("Success");
 	}
 
 	@Override

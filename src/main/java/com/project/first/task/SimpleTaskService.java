@@ -53,4 +53,10 @@ public class SimpleTaskService implements TaskService {
 		return tasks;
 	}
 
+    @Override
+    public Task produceTask()
+    {
+        return null;
+    }
+
 }
